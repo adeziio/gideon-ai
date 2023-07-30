@@ -1,5 +1,4 @@
-from flask import Flask,  request
-from flask_cors import CORS
+from flask import Flask, jsonify, request
 from dotenv import load_dotenv, find_dotenv
 from src import util
 from src import model
@@ -10,9 +9,6 @@ load_dotenv(find_dotenv())
 
 # Flask
 app = Flask(__name__)
-
-# Cors
-CORS(app)
 
 
 @app.route("/")
@@ -27,9 +23,9 @@ def quote():
         body = request.json
         query = body["query"]
         if (query):
-            return {"response": model.run(query)}
-        return "Invalid parameter."
-    return "Unauthorized."
+            return jsonify(response=model.run(query))
+        return jsonify(error="Invalid parameter")
+    return jsonify(error="Unauthorized")
 
 
 # Main
