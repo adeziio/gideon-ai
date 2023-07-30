@@ -27,7 +27,7 @@ def quote():
         body = request.json
         query = body["query"]
         if (query):
-            return model.run(query)
+            return {"response": model.run(query)}
         return "Invalid parameter."
     return "Unauthorized."
 
