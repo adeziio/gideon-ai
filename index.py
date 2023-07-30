@@ -1,7 +1,8 @@
 from flask import Flask,  request
 from flask_cors import CORS
 from dotenv import load_dotenv, find_dotenv
-import util
+from src import util
+from src import model
 
 
 # Environment Variables
@@ -25,7 +26,8 @@ def quote():
     if (util.checkAuth(key)):
         body = request.json
         query = body["query"]
-
+        if (query):
+            return model.run(query)
         return "Invalid parameter."
     return "Unauthorized."
 
