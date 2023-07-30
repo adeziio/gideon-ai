@@ -29,6 +29,7 @@ def run(query):
                 messages=[{"role": "user", "content": query}]
             )
             response = chat_completion.choices[0].message.content
+        print(response)
         return response
     except Exception as e:
         return str(e)

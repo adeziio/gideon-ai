@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify,  request
+from flask_cors import CORS
 from dotenv import load_dotenv, find_dotenv
 from src import util
 from src import model
@@ -9,6 +10,9 @@ load_dotenv(find_dotenv())
 
 # Flask
 app = Flask(__name__)
+
+# Cors
+CORS(app)
 
 
 @app.route("/")
