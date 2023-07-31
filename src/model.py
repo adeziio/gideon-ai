@@ -14,14 +14,15 @@ openai.api_key = os.getenv('GIDEON_OPENAI_KEY')
 
 def run(query):
     try:
-        response = ""
+        query = query.lower()
+        response = "Sup man"
         if ("draw" in query) or ("picture" in query) or ("image" in query):
             image_resp = openai.Image.create(
                 prompt=query,
                 n=1,
                 # size="512x512"
             )
-            response = image_resp
+            response = image_resp['data'][0]['url']
         else:
             # create a chat completion
             chat_completion = openai.ChatCompletion.create(
@@ -29,7 +30,6 @@ def run(query):
                 messages=[{"role": "user", "content": query}]
             )
             response = chat_completion.choices[0].message.content
-        print(response)
         return response
     except Exception as e:
         return str(e)
