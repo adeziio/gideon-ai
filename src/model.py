@@ -20,7 +20,7 @@ def run(query):
             image_resp = openai.Image.create(
                 prompt=query,
                 n=1,
-                # size="512x512"
+                size="512x512"
             )
             response = image_resp['data'][0]['url']
         else:
