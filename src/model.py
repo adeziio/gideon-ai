@@ -12,13 +12,13 @@ load_dotenv(find_dotenv())
 openai.api_key = os.getenv('GIDEON_OPENAI_KEY')
 
 
-def run(query):
+def run(model, input):
     try:
-        query = query.lower()
-        response = "Sup man"
-        if ("draw" in query) or ("picture" in query) or ("image" in query):
+        input = input.lower()
+        response = ""
+        if ("draw" in input) or ("picture" in input) or ("image" in input):
             image_resp = openai.Image.create(
-                prompt=query,
+                prompt=input,
                 n=1,
                 size="512x512"
             )
@@ -26,8 +26,8 @@ def run(query):
         else:
             # create a chat completion
             chat_completion = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": query}]
+                model=model,
+                messages=[{"role": "user", "content": input}]
             )
             response = chat_completion.choices[0].message.content
         return response
