@@ -16,7 +16,7 @@ def run(model, input):
     try:
         input = input.lower()
         response = ""
-        if ("draw" in input) or ("picture" in input) or ("image" in input):
+        if ("draw" in input) or ("picture" in input) or ("image" in input) or ("portrait" in input):
             image_resp = openai.Image.create(
                 prompt=input,
                 n=1,
