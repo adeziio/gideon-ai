@@ -2,8 +2,6 @@ import os
 import openai
 
 from dotenv import load_dotenv, find_dotenv
-from src import util
-
 
 # Environment Variables
 load_dotenv(find_dotenv())
