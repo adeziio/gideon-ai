@@ -1,4 +1,4 @@
 __pycache__
 .vscode
 .env
-stable-diffusion-v1-5
+src/models

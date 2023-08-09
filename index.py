@@ -2,8 +2,8 @@ from flask import Flask, jsonify,  request
 from flask_cors import CORS
 from dotenv import load_dotenv, find_dotenv
 from src.utils import Auth
-from src.models import OpenAI
-from src.models import StableDiffusion
+from src.services import OpenAI
+from src.services import StableDiffusion
 
 
 # Environment Variables
@@ -26,24 +26,25 @@ def openai():
     key = request.headers.get("GIDEON_API_KEY")
     if (Auth.checkAuth(key)):
         body = request.json
-        input = body["input"]
         model = body["model"]
+        input = body["input"]
         if (input and model):
             return jsonify(output=OpenAI.run(model, input))
         return jsonify(error="Invalid parameter")
     return jsonify(error="Unauthorized")
 
 
-# @app.route("/stable-diffusion", methods=['POST'])
-# def stable_diffusion():
-#     key = request.headers.get("GIDEON_API_KEY")
-#     if (Auth.checkAuth(key)):
-#         body = request.json
-#         input = body["input"]
-#         if (input):
-#             return jsonify(output=StableDiffusion.run(input))
-#         return jsonify(error="Invalid parameter")
-#     return jsonify(error="Unauthorized")
+@app.route("/stable-diffusion", methods=['POST'])
+def stable_diffusion():
+    key = request.headers.get("GIDEON_API_KEY")
+    if (Auth.checkAuth(key)):
+        body = request.json
+        model = body["model"]
+        input = body["input"]
+        if (input):
+            return jsonify(output=StableDiffusion.run(model, input))
+        return jsonify(error="Invalid parameter")
+    return jsonify(error="Unauthorized")
 
 
 # Main
