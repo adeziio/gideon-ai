@@ -5,7 +5,7 @@ requests==2.27.1
 flask-cors==3.0.10
 openai==0.27.8
 omegaconf==2.3.0
---find-links https://download.pytorch.org/whl/torch_stable.html
-torch==2.0.1+cu118
-# diffusers==0.19.3
+# --find-links https://download.pytorch.org/whl/torch_stable.html
+# torch==2.0.1+cu118
+diffusers==0.19.3
 # transformers==4.31.0
