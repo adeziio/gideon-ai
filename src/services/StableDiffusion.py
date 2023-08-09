@@ -1,10 +1,9 @@
-import base64
-import torch
-from diffusers import StableDiffusionPipeline
-
-
 def run(model, input):
     try:
+        import base64
+        import torch
+        from diffusers import StableDiffusionPipeline
+
         input = input.lower()
         response = ""
 
