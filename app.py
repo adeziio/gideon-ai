@@ -21,14 +21,15 @@ def default():
     return "Gideon is online..."
 
 
-@app.route("/gpt-3.5-turbo", methods=['POST'])
-def gpt_3_5_turbo():
+@app.route("/openai", methods=['POST'])
+def openai():
     key = request.headers.get("GIDEON_API_KEY")
     if (Auth.checkAuth(key)):
         body = request.json
         input = body["input"]
-        if (input):
-            return jsonify(output=OpenAI.run("gpt-3.5-turbo", input))
+        model = body["model"]
+        if (input and model):
+            return jsonify(output=OpenAI.run(model, input))
         return jsonify(error="Invalid parameter")
     return jsonify(error="Unauthorized")
 

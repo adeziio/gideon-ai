@@ -14,17 +14,16 @@ def run(model, input):
     try:
         input = input.lower()
         response = ""
-        if ("draw" in input) or ("picture" in input) or ("image" in input) or ("portrait" in input):
+        if model == "image":
             image_resp = openai.Image.create(
                 prompt=input,
                 n=1,
                 size="512x512"
             )
             response = image_resp['data'][0]['url']
-        else:
-            # create a chat completion
+        elif model == "language":
             chat_completion = openai.ChatCompletion.create(
-                model=model,
+                model="gpt-3.5-turbo",
                 messages=[{"role": "user", "content": input}]
             )
             response = chat_completion.choices[0].message.content
