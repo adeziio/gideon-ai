@@ -34,17 +34,17 @@ def openai():
     return jsonify(error="Unauthorized")
 
 
-@app.route("/stable-diffusion", methods=['POST'])
-def stable_diffusion():
-    key = request.headers.get("GIDEON_API_KEY")
-    if (Auth.checkAuth(key)):
-        body = request.json
-        model = body["model"]
-        input = body["input"]
-        if (input):
-            return jsonify(output=StableDiffusion.run(model, input))
-        return jsonify(error="Invalid parameter")
-    return jsonify(error="Unauthorized")
+# @app.route("/stable-diffusion", methods=['POST'])
+# def stable_diffusion():
+#     key = request.headers.get("GIDEON_API_KEY")
+#     if (Auth.checkAuth(key)):
+#         body = request.json
+#         model = body["model"]
+#         input = body["input"]
+#         if (input):
+#             return jsonify(output=StableDiffusion.run(model, input))
+#         return jsonify(error="Invalid parameter")
+#     return jsonify(error="Unauthorized")
 
 
 # Main

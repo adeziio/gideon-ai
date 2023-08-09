@@ -1,27 +1,22 @@
-import torch
-from diffusers import StableDiffusionPipeline
+# import torch
+# from diffusers import StableDiffusionPipeline
 
 
-def run(model, input):
-    try:
-        input = input.lower()
-        response = ""
-        print(input)
+# def run(model, input):
+#     try:
+#         input = input.lower()
+#         response = ""
 
-        # print("Torch version:", torch.__version__)
+#         if (model == "aden"):
+#             pipe = StableDiffusionPipeline.from_single_file(
+#                 "src/models/aden.ckpt", torch_dtype=torch.float16,)
+#             pipe = pipe.to("cuda")
 
-        # print("Is CUDA enabled?", torch.cuda.is_available())
+#             with torch.autocast('cuda'):
+#                 image = pipe(input).images[0]
 
-        if (model == "aden"):
-            pipe = StableDiffusionPipeline.from_single_file(
-                "src/models/aden.ckpt", torch_dtype=torch.float16,)
-            pipe = pipe.to("cuda")
+#             image.save("generated_image.png")
 
-            with torch.autocast('cuda'):
-                image = pipe(input).images[0]
-
-            image.save("generated_image.png")
-
-        return response
-    except Exception as e:
-        return str(e)
+#         return response
+#     except Exception as e:
+#         return str(e)
